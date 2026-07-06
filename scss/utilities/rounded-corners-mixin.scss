@@ -16,17 +16,11 @@
 }
 
 @mixin border-image-repeat() {
+  // stretch is the intended look. A media hack used to force `space` on
+  // Chrome as a workaround for its old border-image scaling; modern Chrome
+  // renders `space` with visible gaps (dashed borders on balloons), so the
+  // workaround had to go.
   border-image-repeat: stretch;
-
-  // for chrome
-  @media all and (-webkit-min-device-pixel-ratio: 0) and (min-resolution: 0.001dpcm) {
-    border-image-repeat: space;
-  }
-
-  // for firefox
-  @supports (-moz-appearance: meterbar) {
-    border-image-repeat: stretch;
-  }
 }
 
 @mixin rounded-corners($isDark: false) {
