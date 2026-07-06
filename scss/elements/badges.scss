@@ -1,3 +1,7 @@
+@use "sass:list";
+@use "sass:map";
+@use "../base/variables";
+
 @mixin span-style-is-icon($color, $background-color, $display, $width, $font-size) {
   display: $display;
   align-items: center;
@@ -78,29 +82,29 @@
   // Other styles
   // prettier-ignore
   $types:
-    "dark" $background-color $base-color,
-    "primary" $background-color map-get($primary-colors, "normal"),
-    "success" $background-color map-get($success-colors, "normal"),
-    "warning" $base-color map-get($warning-colors, "normal"),
-    "error" $background-color map-get($error-colors, "normal");
+    "dark" variables.$background-color variables.$base-color,
+    "primary" variables.$background-color map.get(variables.$primary-colors, "normal"),
+    "success" variables.$background-color map.get(variables.$success-colors, "normal"),
+    "warning" variables.$base-color map.get(variables.$warning-colors, "normal"),
+    "error" variables.$background-color map.get(variables.$error-colors, "normal");
 
   @each $type in $types {
     &.is-splited, // deprecated. Please use .is-split
     &.is-split {
-      & span.is-#{nth($type, 1)} {
-        @include badge-style(nth($type, 2), nth($type, 3), is-split);
+      & span.is-#{list.nth($type, 1)} {
+        @include badge-style(list.nth($type, 2), list.nth($type, 3), is-split);
       }
     }
 
     &.is-icon {
       width: $em * 7;
-      & span.is-#{nth($type, 1)} {
-        @include badge-style(nth($type, 2), nth($type, 3), is-icon);
+      & span.is-#{list.nth($type, 1)} {
+        @include badge-style(list.nth($type, 2), list.nth($type, 3), is-icon);
       }
     }
 
-    & span.is-#{nth($type, 1)} {
-      @include badge-style(nth($type, 2), nth($type, 3));
+    & span.is-#{list.nth($type, 1)} {
+      @include badge-style(list.nth($type, 2), list.nth($type, 3));
     }
   }
 }

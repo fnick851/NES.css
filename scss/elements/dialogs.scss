@@ -1,6 +1,9 @@
+@use "../base/variables";
+@use "../utilities/rounded-corners-mixin";
+
 .nes-dialog {
   padding: 1.5rem 2rem;
-  border-width: $border-size;
+  border-width: variables.$border-size;
 
   > .backdrop,
   &::backdrop {
@@ -12,26 +15,26 @@
   }
 
   &.is-rounded {
-    @include rounded-corners();
+    @include rounded-corners-mixin.rounded-corners();
 
     &.is-dark {
-      @include rounded-corners(true);
+      @include rounded-corners-mixin.rounded-corners(true);
     }
   }
   &.is-dark {
-    color: $background-color;
-    background-color: $base-color;
-    border-color: $background-color;
+    color: variables.$background-color;
+    background-color: variables.$base-color;
+    border-color: variables.$background-color;
 
     &:not(.is-rounded)::before {
       position: absolute;
-      top: -$border-size * 2;
-      right: -$border-size * 2;
-      bottom: -$border-size * 2;
-      left: -$border-size * 2;
+      top: -(variables.$border-size) * 2;
+      right: -(variables.$border-size) * 2;
+      bottom: -(variables.$border-size) * 2;
+      left: -(variables.$border-size) * 2;
       z-index: -1;
       content: "";
-      border: $border-size solid $base-color;
+      border: variables.$border-size solid variables.$base-color;
     }
   }
 }

@@ -1,3 +1,7 @@
+@use "sass:list";
+@use "../utilities/fill-gaps";
+@use "../utilities/icon-mixin";
+
 .nes-octocat {
   $octocat-colors: (#333, #ffdec4, #cb7066);
   // prettier-ignore
@@ -40,8 +44,8 @@
 
   position: relative;
   display: inline-block;
-  width: $size * length(nth($octocat-1, 1));
-  height: $size * length($octocat-1);
+  width: $size * list.length(list.nth($octocat-1, 1));
+  height: $size * list.length($octocat-1);
 
   &::before {
     position: absolute;
@@ -50,8 +54,8 @@
     content: "";
     background: transparent;
 
-    @include pixelize($size, $octocat-1, $octocat-colors);
-    @include fill-gaps();
+    @include icon-mixin.pixelize($size, $octocat-1, $octocat-colors);
+    @include fill-gaps.fill-gaps();
   }
 
   &.animate::before {
@@ -60,7 +64,7 @@
 
   @keyframes wave {
     50% {
-      @include pixelize($size, $octocat-2, $octocat-colors);
+      @include icon-mixin.pixelize($size, $octocat-2, $octocat-colors);
     }
   }
 }

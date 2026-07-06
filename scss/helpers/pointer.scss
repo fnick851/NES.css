@@ -1,3 +1,5 @@
+@use "../base/variables";
+
 .nes-pointer {
-  cursor: $cursor-click-url, pointer;
+  cursor: variables.$cursor-click-url, pointer;
 }

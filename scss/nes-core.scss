@@ -1,13 +1,13 @@
 @charset "utf-8";
 
 /*!***************************************************************************\
-  NES.css Framework
-  Version: development
+  NES.css Framework (fnick851/NES.css fork)
+  Version: 2.3.0-fork.0
 #{build-data()}
 \*****************************************************************************/
 
-@import "base/_index.scss";
-@import "utilities/_index.scss";
-@import "helpers/_index.scss";
-@import "elements/_index.scss";
-@import "form/_index.scss";
+@use "base/_index.scss";
+@use "utilities/_index.scss" as index2;
+@use "helpers/_index.scss" as index3;
+@use "elements/_index.scss" as index4;
+@use "form/_index.scss" as index5;

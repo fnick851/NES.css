@@ -1,3 +1,6 @@
+@use "../base/variables";
+@use "../utilities/rounded-corners-mixin";
+
 @mixin box-shadow($color, $fromLeft: true) {
   @if $fromLeft {
     // prettier-ignore
@@ -23,14 +26,14 @@
 }
 
 .nes-balloon {
-  @include rounded-corners();
+  @include rounded-corners-mixin.rounded-corners();
 
   position: relative;
   display: inline-block;
   padding: 1rem 1.5rem;
   margin: 8px;
   margin-bottom: 30px;
-  background-color: $background-color;
+  background-color: variables.$background-color;
 
   > :last-child {
     margin-bottom: 0;
@@ -43,41 +46,41 @@
   }
 
   &.is-dark {
-    @include rounded-corners(true);
+    @include rounded-corners-mixin.rounded-corners(true);
 
-    color: $background-color;
-    background: $base-color;
+    color: variables.$background-color;
+    background: variables.$base-color;
     border-image-outset: 2;
-    box-shadow: 0 0 0 8px $base-color;
+    box-shadow: 0 0 0 8px variables.$base-color;
 
     &.from-left,
     &.from-right {
       &::before {
-        background-color: $base-color;
-        border-color: $background-color;
+        background-color: variables.$base-color;
+        border-color: variables.$background-color;
       }
 
       &::after {
-        color: $background-color;
-        background-color: $base-color;
+        color: variables.$background-color;
+        background-color: variables.$base-color;
       }
     }
 
     &.from-left {
       &::before {
-        box-shadow: -5px 10px 0 6px $base-color;
+        box-shadow: -5px 10px 0 6px variables.$base-color;
       }
       &::after {
-        @include box-shadow($base-color);
+        @include box-shadow(variables.$base-color);
       }
     }
 
     &.from-right {
       &::before {
-        box-shadow: 5px 10px 0 6px $base-color;
+        box-shadow: 5px 10px 0 6px variables.$base-color;
       }
       &::after {
-        @include box-shadow($base-color, false);
+        @include box-shadow(variables.$base-color, false);
       }
     }
   }
@@ -92,9 +95,9 @@
       bottom: -14px;
       width: 26px;
       height: 10px;
-      background-color: $background-color;
-      border-right: 4px solid $base-color;
-      border-left: 4px solid $base-color;
+      background-color: variables.$background-color;
+      border-right: 4px solid variables.$base-color;
+      border-left: 4px solid variables.$base-color;
     }
 
     &::after {
@@ -102,9 +105,9 @@
       width: 18px;
       height: 4px;
       margin-right: 8px;
-      color: $base-color;
-      background-color: $background-color;
-      @include box-shadow($background-color);
+      color: variables.$base-color;
+      background-color: variables.$background-color;
+      @include box-shadow(variables.$background-color);
     }
   }
 
@@ -118,9 +121,9 @@
       bottom: -14px;
       width: 26px;
       height: 10px;
-      background-color: $background-color;
-      border-right: 4px solid $base-color;
-      border-left: 4px solid $base-color;
+      background-color: variables.$background-color;
+      border-right: 4px solid variables.$base-color;
+      border-left: 4px solid variables.$base-color;
     }
 
     &::after {
@@ -128,8 +131,8 @@
       width: 18px;
       height: 4px;
       margin-left: 8px;
-      background-color: $background-color;
-      @include box-shadow($background-color, false);
+      background-color: variables.$background-color;
+      @include box-shadow(variables.$background-color, false);
     }
   }
 }

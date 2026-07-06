@@ -1,3 +1,9 @@
+@use "sass:list";
+@use "sass:map";
+@use "../base/variables";
+@use "../utilities/icon-mixin";
+@use "../utilities/rounded-corners-mixin";
+
 .nes-select {
   // prettier-ignore
   $dropdown: (
@@ -8,35 +14,35 @@
     (0,0,1,1,1,0,0),
     (0,0,0,1,0,0,0),
   );
-  $colors: ($base-color, map-get($default-colors, "shadow"));
+  $colors: (variables.$base-color, map.get(variables.$default-colors, "shadow"));
 
   position: relative;
-  width: calc(100% - #{2 * $border-size});
+  width: calc(100% - #{2 * variables.$border-size});
   margin: 4px;
 
   select {
-    @include compact-rounded-corners();
+    @include rounded-corners-mixin.compact-rounded-corners();
 
     width: 100%;
     padding: 0.5rem 2.5rem 0.5rem 1rem;
-    cursor: $cursor-click-url, pointer;
+    cursor: variables.$cursor-click-url, pointer;
     border-radius: 0;
-    outline-color: map-get($default-colors, "hover");
+    outline-color: map.get(variables.$default-colors, "hover");
     -webkit-appearance: none;
     appearance: none;
 
     &:invalid {
-      color: map-get($disabled-colors, shadow);
+      color: map.get(variables.$disabled-colors, shadow);
     }
   }
 
   &.is-dark select {
-    color: $background-color;
-    background-color: $base-color;
+    color: variables.$background-color;
+    background-color: variables.$base-color;
   }
 
   &::after {
-    @include pixelize(3px, $dropdown, $colors);
+    @include icon-mixin.pixelize(3px, $dropdown, $colors);
 
     position: absolute;
     top: calc(50% - 11px);
@@ -47,30 +53,30 @@
 
   // prettier-ignore
   $types:
-    "dark" map-get($default-colors, "normal") map-get($default-colors, "hover"),
-    "success" map-get($success-colors, "normal") map-get($success-colors, "hover"),
-    "warning" map-get($warning-colors, "normal") map-get($warning-colors, "hover"),
-    "error" map-get($error-colors, "normal") map-get($error-colors, "hover"),
-    "disable" map-get($disabled-colors, "normal") map-get($disabled-colors, "shadow");
+    "dark" map.get(variables.$default-colors, "normal") map.get(variables.$default-colors, "hover"),
+    "success" map.get(variables.$success-colors, "normal") map.get(variables.$success-colors, "hover"),
+    "warning" map.get(variables.$warning-colors, "normal") map.get(variables.$warning-colors, "hover"),
+    "error" map.get(variables.$error-colors, "normal") map.get(variables.$error-colors, "hover"),
+    "disable" map.get(variables.$disabled-colors, "normal") map.get(variables.$disabled-colors, "shadow");
   @each $type in $types {
-    &.is-#{nth($type, 1)} {
-      $color: nth($type, 2);
+    &.is-#{list.nth($type, 1)} {
+      $color: list.nth($type, 2);
 
       &::after {
         color: $color;
       }
 
       select {
-        @include compact-border-image($color);
+        @include rounded-corners-mixin.compact-border-image($color);
 
-        outline-color: nth($type, 3);
+        outline-color: list.nth($type, 3);
       }
     }
   }
   &.is-disabled {
     @extend .is-disable;
     select {
-      color: map-get($disabled-colors, "normal");
+      color: map.get(variables.$disabled-colors, "normal");
       cursor: not-allowed;
     }
   }

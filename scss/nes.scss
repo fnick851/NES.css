@@ -1,6 +1,6 @@
 @charset "utf-8";
 
-@import "nes-core.scss";
-@import "components/_index.scss";
-@import "icons/_index.scss";
-@import "pixel-arts/_index.scss";
+@use "nes-core.scss";
+@use "components/_index.scss";
+@use "icons/_index.scss" as index2;
+@use "pixel-arts/_index.scss" as index3;

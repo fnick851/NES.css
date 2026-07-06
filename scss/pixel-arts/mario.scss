@@ -1,3 +1,7 @@
+@use "sass:list";
+@use "../utilities/fill-gaps";
+@use "../utilities/icon-mixin";
+
 .nes-mario {
   $mario-colors: (#f81c2f, #65352b, #ffbb8e, #000, #1560ad, #aeaeac, #fef102);
   // prettier-ignore
@@ -23,8 +27,8 @@
 
   position: relative;
   display: inline-block;
-  width: $size * length(nth($mario, 1));
-  height: $size * length($mario);
+  width: $size * list.length(list.nth($mario, 1));
+  height: $size * list.length($mario);
 
   &::before {
     position: absolute;
@@ -33,7 +37,7 @@
     content: "";
     background: transparent;
 
-    @include pixelize($size, $mario, $mario-colors);
-    @include fill-gaps();
+    @include icon-mixin.pixelize($size, $mario, $mario-colors);
+    @include fill-gaps.fill-gaps();
   }
 }

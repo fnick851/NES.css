@@ -1,21 +1,24 @@
+@use "sass:map";
+@use "../base/variables";
+
 .nes-text {
   &.is-primary {
-    color: map-get($primary-colors, "normal");
+    color: map.get(variables.$primary-colors, "normal");
   }
 
   &.is-success {
-    color: map-get($success-colors, "normal");
+    color: map.get(variables.$success-colors, "normal");
   }
 
   &.is-warning {
-    color: map-get($warning-colors, "normal");
+    color: map.get(variables.$warning-colors, "normal");
   }
 
   &.is-error {
-    color: map_get($error-colors, "normal");
+    color: map.get(variables.$error-colors, "normal");
   }
 
   &.is-disabled {
-    color: map_get($disabled-colors, "normal");
+    color: map.get(variables.$disabled-colors, "normal");
   }
 }

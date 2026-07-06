@@ -1,3 +1,7 @@
+@use "sass:list";
+@use "../utilities/fill-gaps";
+@use "../utilities/icon-mixin";
+
 .nes-charmander {
   $charmander-colors: (#000202, #f77702, #eb2010, #fdfcff, #e5d70a, #e7d70e);
   // prettier-ignore
@@ -25,8 +29,8 @@
 
   position: relative;
   display: inline-block;
-  width: $size * length(nth($charmander, 1));
-  height: $size * length($charmander);
+  width: $size * list.length(list.nth($charmander, 1));
+  height: $size * list.length($charmander);
 
   &::before {
     position: absolute;
@@ -35,7 +39,7 @@
     content: "";
     background: transparent;
 
-    @include pixelize($size, $charmander, $charmander-colors);
-    @include fill-gaps();
+    @include icon-mixin.pixelize($size, $charmander, $charmander-colors);
+    @include fill-gaps.fill-gaps();
   }
 }

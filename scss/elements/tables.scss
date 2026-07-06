@@ -1,3 +1,6 @@
+@use "../base/variables";
+@use "../utilities/rounded-corners-mixin";
+
 .nes-table-responsive {
   max-width: 100%;
   overflow-x: auto;
@@ -6,7 +9,7 @@
 
 .nes-table {
   table-layout: fixed;
-  background-color: $background-color;
+  background-color: variables.$background-color;
 
   tr {
     margin-left: -0.25em;
@@ -17,7 +20,7 @@
     position: relative;
     padding: 0.5rem;
     word-wrap: break-word;
-    border-color: $base-color;
+    border-color: variables.$base-color;
     border-style: solid;
     border-width: 0 0.25em 0.25em 0;
 
@@ -32,7 +35,7 @@
       width: 0.25em;
       height: 0.25em;
       content: "";
-      background-color: $base-color;
+      background-color: variables.$base-color;
     }
 
     &::after {
@@ -60,20 +63,20 @@
     border-spacing: 0;
     border-collapse: separate;
 
-    @include compact-rounded-corners();
+    @include rounded-corners-mixin.compact-rounded-corners();
   }
 
   &.is-dark {
-    color: $background-color;
-    background-color: $base-color;
+    color: variables.$background-color;
+    background-color: variables.$base-color;
 
     &.is-bordered {
-      @include compact-rounded-corners(true);
+      @include rounded-corners-mixin.compact-rounded-corners(true);
     }
 
     th,
     td {
-      border-color: $background-color;
+      border-color: variables.$background-color;
 
       &::after,
       &::before {

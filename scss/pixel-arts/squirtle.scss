@@ -1,3 +1,7 @@
+@use "sass:list";
+@use "../utilities/fill-gaps";
+@use "../utilities/icon-mixin";
+
 .nes-squirtle {
   $squirtle-colors: (#000, #9cf, #cb6633, #9fa1a1, #fff, #f89934, #ff3);
   // prettier-ignore
@@ -24,8 +28,8 @@
 
   position: relative;
   display: inline-block;
-  width: $size * length(nth($squirtle, 1));
-  height: $size * length($squirtle);
+  width: $size * list.length(list.nth($squirtle, 1));
+  height: $size * list.length($squirtle);
 
   &::before {
     position: absolute;
@@ -34,7 +38,7 @@
     content: "";
     background: transparent;
 
-    @include pixelize($size, $squirtle, $squirtle-colors);
-    @include fill-gaps();
+    @include icon-mixin.pixelize($size, $squirtle, $squirtle-colors);
+    @include fill-gaps.fill-gaps();
   }
 }

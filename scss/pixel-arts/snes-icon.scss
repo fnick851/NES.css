@@ -1,3 +1,7 @@
+@use "sass:list";
+@use "../utilities/fill-gaps";
+@use "../utilities/icon-mixin";
+
 .snes-logo {
   $logo-colors: (#333, #d7d7d7, #8932e5, #ad6df0);
 
@@ -18,8 +22,8 @@
 
   position: relative;
   display: inline-block;
-  width: $size * length(nth($logo, 1));
-  height: $size * length($logo);
+  width: $size * list.length(list.nth($logo, 1));
+  height: $size * list.length($logo);
 
   &::before {
     position: absolute;
@@ -28,7 +32,7 @@
     content: "";
     background: transparent;
 
-    @include pixelize($size, $logo, $logo-colors);
-    @include fill-gaps();
+    @include icon-mixin.pixelize($size, $logo, $logo-colors);
+    @include fill-gaps.fill-gaps();
   }
 }

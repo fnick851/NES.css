@@ -1,13 +1,18 @@
+@use "sass:list";
+@use "sass:map";
+@use "../base/variables";
+@use "../utilities/rounded-corners-mixin";
+
 @mixin btn-style($color, $background, $hover-background, $shadow) {
   color: $color;
   background-color: $background;
 
   &::after {
     position: absolute;
-    top: -$border-size;
-    right: -$border-size;
-    bottom: -$border-size;
-    left: -$border-size;
+    top: -(variables.$border-size);
+    right: -(variables.$border-size);
+    bottom: -(variables.$border-size);
+    left: -(variables.$border-size);
     content: "";
     box-shadow: inset -4px -4px $shadow;
   }
@@ -33,53 +38,60 @@
 
 // Default style
 .nes-btn {
-  @include compact-rounded-corners();
+  @include rounded-corners-mixin.compact-rounded-corners();
 
   position: relative;
   display: inline-block;
   padding: 6px 8px;
-  margin: $border-size;
+  margin: variables.$border-size;
   text-align: center;
   vertical-align: middle;
-  cursor: $cursor-click-url, pointer;
+  cursor: variables.$cursor-click-url, pointer;
   user-select: none;
 
   @include btn-style(
-    $base-color,
-    map-get($default-colors, "normal"),
-    map-get($default-colors, "hover"),
-    map-get($default-colors, "shadow")
+    variables.$base-color,
+    map.get(variables.$default-colors, "normal"),
+    map.get(variables.$default-colors, "hover"),
+    map.get(variables.$default-colors, "shadow")
   );
 
   &:focus {
     outline: 0;
   }
 
+  // :focus keeps the soft halo for pointer users; keyboard focus needs an
+  // unambiguous indicator on top of it.
+  &:focus-visible {
+    outline: 3px solid variables.$base-color;
+    outline-offset: 2px;
+  }
+
   &.is-disabled,
   &.is-disabled:hover,
   &.is-disabled:focus {
-    color: $base-color;
+    color: variables.$base-color;
     cursor: not-allowed;
-    background-color: map-get($disabled-colors, "normal");
-    box-shadow: inset -4px -4px map-get($disabled-colors, "shadow");
+    background-color: map.get(variables.$disabled-colors, "normal");
+    box-shadow: inset -4px -4px map.get(variables.$disabled-colors, "shadow");
     opacity: 0.6;
   }
 
   &.is-disabled:hover::after {
-    box-shadow: inset -4px -4px map-get($disabled-colors, "shadow");
+    box-shadow: inset -4px -4px map.get(variables.$disabled-colors, "shadow");
   }
 
   // Other styles
   // prettier-ignore
   $types:
-    "primary" $background-color map-get($primary-colors, "normal") map-get($primary-colors, "hover") map-get($primary-colors, "shadow"),
-    "success" $background-color map-get($success-colors, "normal") map-get($success-colors, "hover") map-get($success-colors, "shadow"),
-    "warning" $base-color map-get($warning-colors, "normal") map-get($warning-colors, "hover") map-get($warning-colors, "shadow"),
-    "error" $background-color map-get($error-colors, "normal") map-get($error-colors, "hover") map-get($error-colors, "shadow");
+    "primary" variables.$background-color map.get(variables.$primary-colors, "normal") map.get(variables.$primary-colors, "hover") map.get(variables.$primary-colors, "shadow"),
+    "success" variables.$background-color map.get(variables.$success-colors, "normal") map.get(variables.$success-colors, "hover") map.get(variables.$success-colors, "shadow"),
+    "warning" variables.$base-color map.get(variables.$warning-colors, "normal") map.get(variables.$warning-colors, "hover") map.get(variables.$warning-colors, "shadow"),
+    "error" variables.$background-color map.get(variables.$error-colors, "normal") map.get(variables.$error-colors, "hover") map.get(variables.$error-colors, "shadow");
 
   @each $type in $types {
-    &.is-#{nth($type, 1)} {
-      @include btn-style(nth($type, 2), nth($type, 3), nth($type, 4), nth($type, 5));
+    &.is-#{list.nth($type, 1)} {
+      @include btn-style(list.nth($type, 2), list.nth($type, 3), list.nth($type, 4), list.nth($type, 5));
     }
   }
 

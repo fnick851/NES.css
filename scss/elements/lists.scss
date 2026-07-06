@@ -1,7 +1,12 @@
+@use "sass:map";
+@use "../base/color-palette";
+@use "../base/variables";
+@use "../utilities/icon-mixin";
+
 @mixin list-before(
   $class,
   $disc-or-circle,
-  $colors: ($base-color, map-get($default-colors, "shadow"))
+  $colors: (variables.$base-color, map.get(variables.$default-colors, "shadow"))
 ) {
   &.is-#{$class} li::before {
     position: absolute;
@@ -9,7 +14,7 @@
     left: -22px;
     content: "";
 
-    @include pixelize(2px, $disc-or-circle, $colors);
+    @include icon-mixin.pixelize(2px, $disc-or-circle, $colors);
   }
 }
 
@@ -44,12 +49,12 @@
   @include list-before("circle", $circle);
 
   &.is-dark {
-    $dark-colors: ($background-color, $base-color);
+    $dark-colors: (variables.$background-color, variables.$base-color);
     @include list-before("disc", $disc, $dark-colors);
     @include list-before("circle", $circle, $dark-colors);
 
     li {
-      color: $color-white;
+      color: color-palette.$color-white;
     }
   }
 }

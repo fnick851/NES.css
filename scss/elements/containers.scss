@@ -1,3 +1,6 @@
+@use "../base/variables";
+@use "../utilities/rounded-corners-mixin";
+
 .nes-container {
   position: relative;
   padding: 1.5rem 2rem;
@@ -23,7 +26,7 @@
       padding: 0 0.5rem;
       margin: -1.8rem 0 1rem;
       font-size: 1rem;
-      background-color: $background-color;
+      background-color: variables.$background-color;
     }
 
     &.is-centered {
@@ -41,35 +44,35 @@
 
   &.is-dark {
     position: relative;
-    margin: $border-size;
-    color: $background-color;
-    background-color: $base-color;
+    margin: variables.$border-size;
+    color: variables.$background-color;
+    background-color: variables.$base-color;
     border-color: white;
 
     &::after {
       position: absolute;
-      top: -$border-size * 1.8;
-      right: -$border-size * 1.8;
-      bottom: -$border-size * 1.8;
-      left: -$border-size * 1.8;
+      top: -(variables.$border-size) * 1.8;
+      right: -(variables.$border-size) * 1.8;
+      bottom: -(variables.$border-size) * 1.8;
+      left: -(variables.$border-size) * 1.8;
       z-index: -1;
       content: "";
-      background-color: $base-color;
+      background-color: variables.$base-color;
     }
 
     &.with-title {
       > .title {
-        color: $background-color;
-        background-color: $base-color;
+        color: variables.$background-color;
+        background-color: variables.$base-color;
       }
     }
   }
 
   &.is-rounded {
-    @include rounded-corners();
+    @include rounded-corners-mixin.rounded-corners();
 
     padding: 1rem 1.5rem;
-    margin: $border-size;
+    margin: variables.$border-size;
 
     &.with-title {
       > .title {
@@ -90,7 +93,7 @@
     }
 
     &.is-dark {
-      @include rounded-corners(true);
+      @include rounded-corners-mixin.rounded-corners(true);
       &::after {
         content: none;
       }
